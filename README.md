@@ -1,1 +1,1 @@
-# Detecccion_Melanomas_Cancerigenos-Caso2
+# Deteccion_Melanomas_Cancerigenos-Caso2
