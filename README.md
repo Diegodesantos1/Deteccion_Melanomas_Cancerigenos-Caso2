@@ -1,1 +1,1 @@
-# Detenci-n_Melanomas_Cancer-genos-Caso2
+# Deteccion_Melanomas_Cancerigenos-Caso2
