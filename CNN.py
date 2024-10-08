@@ -1,5 +1,6 @@
 import tensorflow as tf
 from tensorflow.keras.preprocessing.image import ImageDataGenerator
+import matplotlib.pyplot as plt
 
 # Definir paths de entrenamiento y prueba con subdirectorios 'Benign' y 'Malignant'
 train_dir = 'train'  # Carpeta principal con subcarpetas 'Benign' y 'Malignant'
@@ -56,6 +57,35 @@ model.compile(optimizer='adam', loss='binary_crossentropy', metrics=['accuracy']
 # Entrenar el modelo
 history = model.fit(train_generator, epochs=30, validation_data=test_generator)
 
-# Evaluar el modelo en datos de prueba
-test_loss, test_acc = model.evaluate(test_generator)
-print(f'Precisión en el conjunto de prueba: {test_acc}')
+
+
+# Obtener los datos del historial de entrenamiento
+acc = history.history['accuracy']  # Precisión en entrenamiento
+val_acc = history.history['val_accuracy']  # Precisión en validación
+
+loss = history.history['loss']  # Pérdida en entrenamiento
+val_loss = history.history['val_loss']  # Pérdida en validación
+
+epochs_range = range(len(acc))
+
+# Gráfica de Train Accuracy vs Validation Accuracy
+plt.figure(figsize=(10, 5))
+plt.plot(epochs_range, acc, label='Train Accuracy', color='blue')
+plt.plot(epochs_range, val_acc, label='Validation Accuracy', color='orange')
+plt.title('Train vs Validation Accuracy')
+plt.xlabel('Epochs')
+plt.ylabel('Accuracy')
+plt.legend(loc='lower right')
+plt.grid(True)
+plt.show()
+
+# Gráfica de Train Loss vs Validation Loss
+plt.figure(figsize=(10, 5))
+plt.plot(epochs_range, loss, label='Train Loss', color='blue')
+plt.plot(epochs_range, val_loss, label='Validation Loss', color='orange')
+plt.title('Train vs Validation Loss')
+plt.xlabel('Epochs')
+plt.ylabel('Loss')
+plt.legend(loc='upper right')
+plt.grid(True)
+plt.show()
